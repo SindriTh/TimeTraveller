@@ -9,7 +9,7 @@ str23 = "we"
 str31 = "n"
 str32 = "ns"
 str33 = "sw"
-location = 12
+location = 11
 
 ## Function 1 printallowed
 def printallowed(allowed_moves):
@@ -23,7 +23,7 @@ def printallowed(allowed_moves):
         if allowed_moves[i].lower() == "e":
             out_str += "(E)ast"
         if allowed_moves[i].lower() == "s":
-            out_str += "(s)outh"
+            out_str += "(S)outh"
         if allowed_moves[i].lower() == "w":
             out_str += "(W)est"
     out_str += "."
@@ -31,12 +31,14 @@ def printallowed(allowed_moves):
 
         
 ## Function 2 getinput
-def getinput(allowed_moves,currentloc):
+def getinput(currentloc,allowed_moves):
         movement=input('Direction: ')
         if isallowed(movement,allowed_moves):
-            nextTile(currentloc, movement)
+            return nextTile(currentloc, movement)
+            
         else:
-            print('Not a valid direction!')  
+            print('Not a valid direction!')
+            return currentloc  
 
 
 ## Function 3 allowed
@@ -48,40 +50,53 @@ def isallowed(movement,allowed_moves):
 
 ## Funtion 4 nextTile
 
-
-
-if(location == 11):
-    printallowed(str11)
-    getinput(location,str11)
+def nextTile(currentloc, movement):
+    if movement.lower() == "n":
+        currentloc += 1
+    if movement.lower() == "s":
+        currentloc -= 1
+    if movement.lower() == "e":
+        currentloc += 10
+    if movement.lower() == "w":
+        currentloc -= 10
+    return currentloc
     
-elif(location == 12):
-    printallowed(str12)
-    getinput(location,str12)
 
-elif(location == 13):
-    printallowed(str13)
-    getinput(location,str13)
+while location != 31:
 
-elif(location == 21):
-    printallowed(str21)
-    getinput(location,str21)
+    if(location == 11):
+        printallowed(str11)
+        location = getinput(location,str11)
+        
+    elif(location == 12):
+        printallowed(str12)
+        location = getinput(location,str12)
 
-elif(location == 22):
-    printallowed(str22)
-    getinput(location,str22)
+    elif(location == 13):
+        printallowed(str13)
+        location = getinput(location,str13)
 
-elif(location == 23):
-    printallowed(str23)
-    getinput(location,str23)
+    elif(location == 21):
+        printallowed(str21)
+        location = getinput(location,str21)
 
-elif(location == 31):
-    printallowed(str31)
-    getinput(location,str31)
+    elif(location == 22):
+        printallowed(str22)
+        location = getinput(location,str22)
 
-elif(location == 32):
-    printallowed(str32)
-    getinput(location,str32)
+    elif(location == 23):
+        printallowed(str23)
+        location = getinput(location,str23)
 
-elif(location == 33):
-    printallowed(str32)
-    getinput(location,str33)
+    elif(location == 31):
+        printallowed(str31)
+        location = getinput(location,str31)
+
+    elif(location == 32):
+        printallowed(str32)
+        location = getinput(location,str32)
+
+    elif(location == 33):
+        printallowed(str32)
+        location = getinput(location,str33)
+print("Victory!")
