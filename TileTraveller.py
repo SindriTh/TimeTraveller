@@ -9,11 +9,27 @@ str23 = "we"
 str31 = "n"
 str32 = "ns"
 str33 = "sw"
-stadsetning = 11
+stadsetning = 12
 
 ## Function 1 printallowed
+def printallowed(allowed_moves):
+    out_str = ""
+    length = len(allowed_moves)
+    for i in range(length):
+        if out_str != "":
+            out_str += " or "
+        if allowed_moves[i].lower() == "n":
+            out_str += "(N)orth"
+        if allowed_moves[i].lower() == "e":
+            out_str += "(E)ast"
+        if allowed_moves[i].lower() == "s":
+            out_str += "(s)outh"
+        if allowed_moves[i].lower() == "w":
+            out_str += "(W)est"
+    out_str += "."
+    print("You can travel:",out_str)
 
-
+        
 ## Function 2 getinput
 
 
@@ -25,10 +41,10 @@ stadsetning = 11
 
 if(stadsetning == 11):
     printallowed(str11)
-    getinput(str11)
+ #   getinput(str11)
 elif(stadsetning == 12):
     printallowed(str12)
-    getinput(str12)
+  #  getinput(str12)
 elif(stadsetning == 13):
     printallowed(str13)
     getinput(str13)
