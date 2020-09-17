@@ -31,45 +31,57 @@ def printallowed(allowed_moves):
 
         
 ## Function 2 getinput
-def getinput(location,allowedmoves):
-    movement=input('Direction: ')
-    if allowed(movement,allowedmoves):
-        stadsetning = nexttile(movement,location)
-    else:
-        print('Not a valid direction!')
-        printallowed()        
+def getinput(allowed_moves,currentloc):
+        movement=input('Direction: ')
+        if isallowed(movement,allowed_moves):
+            nextTile(currentloc, movement)
+        else:
+            print('Not a valid direction!')  
 
 
 ## Function 3 allowed
-
+def isallowed(movement,allowed_moves):
+    for ch in allowed_moves:
+        if ch.lower() == movement.lower():
+            return True
+    return False
 
 ## Funtion 4 nextTile
+
 
 
 if(location == 11):
     printallowed(str11)
     getinput(location,str11)
+    
 elif(location == 12):
     printallowed(str12)
     getinput(location,str12)
+
 elif(location == 13):
     printallowed(str13)
     getinput(location,str13)
+
 elif(location == 21):
     printallowed(str21)
     getinput(location,str21)
+
 elif(location == 22):
     printallowed(str22)
     getinput(location,str22)
+
 elif(location == 23):
     printallowed(str23)
     getinput(location,str23)
+
 elif(location == 31):
     printallowed(str31)
     getinput(location,str31)
+
 elif(location == 32):
     printallowed(str32)
     getinput(location,str32)
+
 elif(location == 33):
     printallowed(str32)
     getinput(location,str33)
