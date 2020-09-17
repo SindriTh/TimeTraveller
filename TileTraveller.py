@@ -9,7 +9,7 @@ str23 = "we"
 str31 = "n"
 str32 = "ns"
 str33 = "sw"
-stadsetning = 12
+location = 12
 
 ## Function 1 printallowed
 def printallowed(allowed_moves):
@@ -31,6 +31,13 @@ def printallowed(allowed_moves):
 
         
 ## Function 2 getinput
+def getinput(location,allowedmoves):
+    movement=input('Direction: ')
+    if allowed(movement,allowedmoves):
+        stadsetning = nexttile(movement,location)
+    else:
+        print('Not a valid direction!')
+        printallowed()        
 
 
 ## Function 3 allowed
@@ -39,30 +46,30 @@ def printallowed(allowed_moves):
 ## Funtion 4 nextTile
 
 
-if(stadsetning == 11):
+if(location == 11):
     printallowed(str11)
- #   getinput(str11)
-elif(stadsetning == 12):
+    getinput(location,str11)
+elif(location == 12):
     printallowed(str12)
-  #  getinput(str12)
-elif(stadsetning == 13):
+    getinput(location,str12)
+elif(location == 13):
     printallowed(str13)
-    getinput(str13)
-elif(stadsetning == 21):
+    getinput(location,str13)
+elif(location == 21):
     printallowed(str21)
-    getinput(str21)
-elif(stadsetning == 22):
+    getinput(location,str21)
+elif(location == 22):
     printallowed(str22)
-    getinput(str22)
-elif(stadsetning == 23):
+    getinput(location,str22)
+elif(location == 23):
     printallowed(str23)
-    getinput(str23)
-elif(stadsetning == 31):
+    getinput(location,str23)
+elif(location == 31):
     printallowed(str31)
-    getinput(str31)
-elif(stadsetning == 32):
+    getinput(location,str31)
+elif(location == 32):
     printallowed(str32)
-    getinput(str32)
-elif(stadsetning == 33):
+    getinput(location,str32)
+elif(location == 33):
     printallowed(str32)
-    getinput(str33)
+    getinput(location,str33)
