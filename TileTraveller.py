@@ -1,17 +1,27 @@
 # https://github.com/SindriTh/TileTraveller
 
+# Sindri Þór Harðarson, Friðrik Tryggvi Róbertsson, Ólafur Starri Pálsson.
+
+# Við gerðum alorithma á töflu sem var fyrir framan okkur og ákváðum að skipta vandamálinu niður í 4 föll
+# Við enduðum með föllin printallowed sem prentar mögulegar hreyfingar.
+# getinput sem sækir input frá notanda og kallar í fallið isallowd sem athugar hvort hreyfingin sé lögleg.
+# ef isallowed er True þá keyrir getinput fallið nexttile sem skilar nýrri staðsetningu notenda.
+
+# Strengirnir hér fyrir neðan geyma löglegar hreyfingar, því við meigum ekki nota list.
+
 str11 = "n"
 str12 = "nes"
 str13 = "es"
 str21 = "n"
 str22 = "sw"
-str23 = "we"
+str23 = "ew"
 str31 = "n"
 str32 = "ns"
 str33 = "sw"
 location = 11
 
 ## Function 1 printallowed
+# Prentar allar mögulegar hreyfingar í hverjum reit.
 def printallowed(allowed_moves):
     out_str = ""
     length = len(allowed_moves)
@@ -31,6 +41,7 @@ def printallowed(allowed_moves):
 
         
 ## Function 2 getinput
+# Fær input frá notanda og ef það er löglegt, skilar hann því sem nýrri staðsetningu
 def getinput(currentloc,allowed_moves):
         movement=input('Direction: ')
         if isallowed(movement,allowed_moves):
@@ -42,6 +53,7 @@ def getinput(currentloc,allowed_moves):
 
 
 ## Function 3 allowed
+# Testar hvort input frá notanda sé löglegt
 def isallowed(movement,allowed_moves):
     for ch in allowed_moves:
         if ch.lower() == movement.lower():
@@ -49,7 +61,7 @@ def isallowed(movement,allowed_moves):
     return False
 
 ## Funtion 4 nextTile
-
+# Býr til næstu staðsetningu út frá innslátti notanda og núverandi staðsetningu
 def nextTile(currentloc, movement):
     if movement.lower() == "n":
         currentloc += 1
@@ -97,6 +109,6 @@ while location != 31:
         location = getinput(location,str32)
 
     elif(location == 33):
-        printallowed(str32)
+        printallowed(str33)
         location = getinput(location,str33)
 print("Victory!")
