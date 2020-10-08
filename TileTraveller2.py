@@ -8,6 +8,7 @@
 # ef isallowed er True þá keyrir getinput fallið nexttile sem skilar nýrri staðsetningu notenda.
 
 # Strengirnir hér fyrir neðan geyma löglegar hreyfingar, því við meigum ekki nota list.
+coins_taken = []
 
 str11 = "n"
 str12 = "nes"
@@ -74,10 +75,12 @@ def nextTile(currentloc, movement):
     return currentloc
     
 def leaver(currentloc,tokens):
-    string = input("Pull a lever (y/n): ")
-    if string == "y":
-        tokens += 1
-        print("You received 1 coin, your total is now {}.".format(tokens))
+    if currentloc not in coins_taken:
+        string = input("Pull a lever (y/n): ")
+        if string == "y" and currentloc not in coins_taken:
+            tokens += 1
+            print("You received 1 coin, your total is now {}.".format(tokens))
+            coins_taken.append(currentloc)
     return tokens
     
 
@@ -122,4 +125,4 @@ while location != 31:
     elif(location == 33):
         printallowed(str33)
         location = getinput(location,str33)
-print("Victory!")
+print("Victory! Total coins {}.".format(coins))
