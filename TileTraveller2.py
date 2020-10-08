@@ -8,8 +8,10 @@
 # ef isallowed er True þá keyrir getinput fallið nexttile sem skilar nýrri staðsetningu notenda.
 
 # Strengirnir hér fyrir neðan geyma löglegar hreyfingar, því við meigum ekki nota list.
+import random 
 coins_taken = []
-
+rand=input("Input seed: ")
+random.seed(rand)
 ## Function 1 printallowed
 # Prentar allar mögulegar hreyfingar í hverjum reit.
 def printallowed(allowed_moves):
@@ -33,7 +35,8 @@ def printallowed(allowed_moves):
 ## Function 2 getinput
 # Fær input frá notanda og ef það er löglegt, skilar hann því sem nýrri staðsetningu
 def getinput(currentloc,allowed_moves):
-        movement=input('Direction: ')
+        movement=random.choice(["n", "e", "s", "w"])
+        print('Direction: {}'.format(movement))
         if isallowed(movement,allowed_moves):
             return nextTile(currentloc, movement)
             
@@ -66,7 +69,7 @@ def nextTile(currentloc, movement):
     
 def leaver(currentloc,tokens):
     if currentloc not in coins_taken:
-        string = input("Pull a lever (y/n): ")
+        string = random.choice(["y", "n"])
         if string == "y" and currentloc not in coins_taken:
             tokens += 1
             print("You received 1 coin, your total is now {}.".format(tokens))
@@ -123,7 +126,8 @@ def play():
     print("Victory! Total coins {}.".format(coins))
 
 playagain = "y"
-while(playagain.lower() == "y"):
+while(playagain.lower() == 'y'):
     play()
     playagain = input("Play again (y/n): ")
+
 
