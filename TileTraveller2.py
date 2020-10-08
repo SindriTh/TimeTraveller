@@ -10,17 +10,6 @@
 # Strengirnir hér fyrir neðan geyma löglegar hreyfingar, því við meigum ekki nota list.
 coins_taken = []
 
-str11 = "n"
-str12 = "nes"
-str13 = "es"
-str21 = "n"
-str22 = "sw"
-str23 = "ew"
-str31 = "n"
-str32 = "ns"
-str33 = "sw"
-location = 11
-coins = 0
 ## Function 1 printallowed
 # Prentar allar mögulegar hreyfingar í hverjum reit.
 def printallowed(allowed_moves):
@@ -81,49 +70,59 @@ def leaver(currentloc,tokens):
         if string == "y" and currentloc not in coins_taken:
             tokens += 1
             print("You received 1 coin, your total is now {}.".format(tokens))
-    
     return tokens
     
+def play():
+    global coins_taken = []
+    allowed = (("n","nes","es"),("n","sw","ew"),("n","ns","sw"))
+    location = 11
+    coins = 0
 
-while location != 31:
-
-    if(location == 11):
-        printallowed(str11)
-        location = getinput(location,str11)
+    while location != 31:
         
-    elif(location == 12): # Lever
-        coins = leaver(location,coins)
-        printallowed(str12)
-        location = getinput(location,str12)
+        if(location == 11):
+            printallowed(allowed[0][0])
+            location = getinput(location,allowed[0][0])
+            
+        elif(location == 12): # Lever
+            coins = leaver(location,coins)
+            printallowed(allowed[0][1])
+            location = getinput(location,allowed[0][1])
 
-    elif(location == 13):
-        printallowed(str13)
-        location = getinput(location,str13)
+        elif(location == 13):
+            printallowed(allowed[0][2])
+            location = getinput(location,allowed[0][2])
 
-    elif(location == 21):
-        printallowed(str21)
-        location = getinput(location,str21)
+        elif(location == 21):
+            printallowed(allowed[1][0])
+            location = getinput(location,allowed[1][0])
 
-    elif(location == 22): # Lever
-        coins = leaver(location,coins)
-        printallowed(str22)
-        location = getinput(location,str22)
+        elif(location == 22): # Lever
+            coins = leaver(location,coins)
+            printallowed(allowed[1][1])
+            location = getinput(location,allowed[1][1])
 
-    elif(location == 23): # Lever
-        coins = leaver(location,coins)
-        printallowed(str23)
-        location = getinput(location,str23)
+        elif(location == 23): # Lever
+            coins = leaver(location,coins)
+            printallowed(allowed[1][2])
+            location = getinput(location,allowed[1][2])
 
-    elif(location == 31):
-        printallowed(str31)
-        location = getinput(location,str31)
+        elif(location == 31):
+            printallowed(allowed[2][0])
+            location = getinput(location,allowed[2][0])
 
-    elif(location == 32): # Lever
-        coins = leaver(location,coins)
-        printallowed(str32)
-        location = getinput(location,str32)
+        elif(location == 32): # Lever
+            coins = leaver(location,coins)
+            printallowed(allowed[2][1])
+            location = getinput(location,allowed[2][1])
 
-    elif(location == 33):
-        printallowed(str33)
-        location = getinput(location,str33)
-print("Victory! Total coins {}.".format(coins))
+        elif(location == 33):
+            printallowed(allowed[2][2])
+            location = getinput(location,allowed[2][2])
+    print("Victory! Total coins {}.".format(coins))
+
+playagain = "y"
+while(playagain.lower() == "y"):
+    play()
+    playagain = input("Play again (y/n): ")
+
