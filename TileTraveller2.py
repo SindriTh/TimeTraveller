@@ -73,7 +73,8 @@ def leaver(currentloc,tokens):
     return tokens
     
 def play():
-    global coins_taken = []
+    global coins_taken
+    coins_taken = []
     allowed = (("n","nes","es"),("n","sw","ew"),("n","ns","sw"))
     location = 11
     coins = 0
