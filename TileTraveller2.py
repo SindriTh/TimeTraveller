@@ -50,6 +50,7 @@ def getinput(currentloc,allowed_moves):
             
         else:
             print('Not a valid direction!')
+            coins_taken.append(currentloc)
             return currentloc  
 
 
@@ -80,7 +81,7 @@ def leaver(currentloc,tokens):
         if string == "y" and currentloc not in coins_taken:
             tokens += 1
             print("You received 1 coin, your total is now {}.".format(tokens))
-            coins_taken.append(currentloc)
+    
     return tokens
     
 
