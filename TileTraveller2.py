@@ -9,9 +9,11 @@
 
 # Strengirnir hér fyrir neðan geyma löglegar hreyfingar, því við meigum ekki nota list.
 import random 
-coins_taken = []
-rand=input("Input seed: ")
-random.seed(rand)
+moves = 0
+NORTH ="n"
+EAST = "e"
+SOUTH = "s"
+WEST = "w"
 ## Function 1 printallowed
 # Prentar allar mögulegar hreyfingar í hverjum reit.
 def printallowed(allowed_moves):
@@ -35,15 +37,19 @@ def printallowed(allowed_moves):
 ## Function 2 getinput
 # Fær input frá notanda og ef það er löglegt, skilar hann því sem nýrri staðsetningu
 def getinput(currentloc,allowed_moves):
-        movement=random.choice(["n", "e", "s", "w"])
-        print('Direction: {}'.format(movement))
-        if isallowed(movement,allowed_moves):
-            return nextTile(currentloc, movement)
+    global moves 
+    global coins_taken
+    moves += 1
+    movement=random.choice([NORTH,EAST,SOUTH,WEST])
+    print('Direction: {}'.format(movement))
+    if isallowed(movement,allowed_moves):
+        coins_taken = []
+        return nextTile(currentloc, movement)
             
-        else:
-            print('Not a valid direction!')
-            coins_taken.append(currentloc)
-            return currentloc  
+    else:
+        print('Not a valid direction!')
+        coins_taken.append(currentloc)
+        return currentloc  
 
 
 ## Function 3 allowed
@@ -70,7 +76,8 @@ def nextTile(currentloc, movement):
 def leaver(currentloc,tokens):
     if currentloc not in coins_taken:
         string = random.choice(["y", "n"])
-        if string == "y" and currentloc not in coins_taken:
+        print("Pull a lever (y/n): {}".format(string))
+        if string == "y":
             tokens += 1
             print("You received 1 coin, your total is now {}.".format(tokens))
     return tokens
@@ -81,7 +88,8 @@ def play():
     allowed = (("n","nes","es"),("n","sw","ew"),("n","ns","sw"))
     location = 11
     coins = 0
-
+    global moves
+    moves = 0
     while location != 31:
         
         if(location == 11):
@@ -123,9 +131,12 @@ def play():
         elif(location == 33):
             printallowed(allowed[2][2])
             location = getinput(location,allowed[2][2])
-    print("Victory! Total coins {}.".format(coins))
+    print("Victory! Total coins {}. Moves {}".format(coins,moves))
 
 playagain = "y"
+rand=int(input("Input seed: "))
+random.seed(rand)
+
 while(playagain.lower() == 'y'):
     play()
     playagain = input("Play again (y/n): ")
